@@ -35,7 +35,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.open()
     page.should_be_login_link()
 
-
+@pytest.mark.need_review
 @pytest.mark.register
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope='function', autouse=True)
@@ -47,14 +47,18 @@ class TestUserAddToBasketFromProductPage():
         password = email
         page.register_new_user(str(password))
 
-@pytest.mark.need_review
+    def test_user_cant_see_success_message(self, browser):
+        self.link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/'
+        self.page = ProductPage(browser, self.link)
+        self.page.open()
+        self.page.should_be_guest_cant_see_success_message()
+
     def test_user_can_add_product_to_basket(browser):
         page = ProductPage(browser, link)
         page.open()
-        page.should_be_check_avaliable_basket()
         page.should_be_add_product_in_basket()
         page.should_be_compare_name_product()
         page.should_be_compare_cost_product_in_basket()
-        page.should_be_guest_cant_see_success_message()
+
 
 
