@@ -4,8 +4,8 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from .locators import BasePageLocators
+from .locators import BasketPageLocators
 import math
-import time
 
 
 class BasePage():
@@ -54,9 +54,6 @@ class BasePage():
         print("\nElement is present!")
         return False
 
-    def should_not_be_succes_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.ALLERT_INNER), "Success message is presented, but should not be"
-
     def is_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
@@ -65,6 +62,9 @@ class BasePage():
             return False
         print("\nElement is NOT present!")
         return True
+
+    def should_not_be_succes_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.ALLERT_INNER), "Success message is presented, but should not be"
 
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, probably unauthorised user"
