@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-import pytest
+
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -8,6 +8,11 @@ class LoginPageLocators():
     LOGIN_URL = (By.CSS_SELECTOR, "#login_link")
     LOGIN_FORM = (By.ID, "login_form")
     REGISTER_FORM = (By.ID, "register_form")
+    INPUT_EMAIL = (By.XPATH, "//*[@id='id_registration-email']")
+    INPUT_PASSWORD = (By.XPATH, "//*[@id='id_registration-password1']")
+    REPEAT_PASSWORD = (By.XPATH, "//*[@id='id_registration-password2']")
+    REGISTER_BUTTON = (By.XPATH, '//*[@id="register_form"]/button')
+    REGISTER_SUCCESS = (By.XPATH, '//*[@id="messages"]/div/div')
 
 class ProductPageLocators():
     BUTTON_BASKET = (By.CSS_SELECTOR, "#add_to_basket_form > button")
@@ -20,3 +25,7 @@ class ProductPageLocators():
 
 class BasketPageLocators():
     ALLERT_INNER_BASKET = (By.XPATH, "//*[@id='content_inner']/p")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
